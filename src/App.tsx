@@ -29,7 +29,7 @@ export const App = () => {
 
       setUsers(fetchedUsers);
     } catch (error) {
-      throw new Error('Unable to load Users');
+      setErrorMessage('Unable to load users');
     }
   };
 

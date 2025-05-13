@@ -44,17 +44,19 @@ export const PostDetails: React.FC<Props> = ({ post }) => {
         currentComments.filter(comment => comment.id !== commentId),
       );
     } catch (error) {
-      throw new Error('Unable to delete comment');
+      setErrorMessage('Unable to delete comment');
     }
   };
 
-  const handleAddComment = async (newComment: Comment): Promise<void> => {
+  const handleAddComment = async (
+    newComment: Omit<Comment, 'id'>,
+  ): Promise<void> => {
     try {
       const result = await addComment(newComment);
 
       setComments(prev => [...prev, result]);
     } catch (error) {
-      throw new Error('Unable to add comment');
+      setErrorMessage('Unable to add comment');
     }
   };
 

@@ -2,10 +2,9 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import { Post } from '../types/Post';
 import { Comment } from '../types/Comment';
-import { getCommentId } from '../utils/getCommentId';
 
 type Props = {
-  onSubmit: (newComment: Comment) => Promise<void>;
+  onSubmit: (newComment: Omit<Comment, 'id'>) => Promise<void>;
   postId: Post['id'];
 };
 
@@ -54,7 +53,6 @@ export const NewCommentForm: React.FC<Props> = ({ onSubmit, postId }) => {
     }
 
     const newComment = {
-      id: getCommentId(),
       postId,
       name,
       email,
