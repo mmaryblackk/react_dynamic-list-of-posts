@@ -28,7 +28,9 @@ export const App = () => {
       const fetchedUsers = await getUsers();
 
       setUsers(fetchedUsers);
-    } catch (error) {}
+    } catch (error) {
+      throw new Error('Unable to load Users');
+    }
   };
 
   const loadPosts = useCallback(async () => {

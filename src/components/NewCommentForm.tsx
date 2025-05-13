@@ -5,7 +5,7 @@ import { Comment } from '../types/Comment';
 import { getCommentId } from '../utils/getCommentId';
 
 type Props = {
-  onSubmit: (newComment: Omit<Comment, 'id'>) => Promise<void>;
+  onSubmit: (newComment: Comment) => Promise<void>;
   postId: Post['id'];
 };
 

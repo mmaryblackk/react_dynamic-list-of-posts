@@ -23,6 +23,6 @@ export const deleteComment = (commentId?: number) => {
   return client.delete(`/comments/${commentId}`);
 };
 
-export const AddComment = (newComment: Omit<Comment, 'id'>) => {
+export const addComment = (newComment: Comment) => {
   return client.post<Comment>('/comments', newComment);
 };

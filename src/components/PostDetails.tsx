@@ -3,7 +3,7 @@ import { Loader } from './Loader';
 import { NewCommentForm } from './NewCommentForm';
 import { Post } from '../types/Post';
 import { Comment } from '../types/Comment';
-import { AddComment, deleteComment, getPostComments } from '../api/api';
+import { addComment, deleteComment, getPostComments } from '../api/api';
 
 type Props = {
   post: Post;
@@ -43,18 +43,18 @@ export const PostDetails: React.FC<Props> = ({ post }) => {
       setComments(currentComments =>
         currentComments.filter(comment => comment.id !== commentId),
       );
-    } catch (error) {}
+    } catch (error) {
+      throw new Error('Unable to delete comment');
+    }
   };
 
-  const handleAddComment = async (
-    newComment: Omit<Comment, 'id'>,
-  ): Promise<void> => {
+  const handleAddComment = async (newComment: Comment): Promise<void> => {
     try {
-      const result = await AddComment(newComment);
+      const result = await addComment(newComment);
 
       setComments(prev => [...prev, result]);
     } catch (error) {
-      throw error;
+      throw new Error('Unable to add comment');
     }
   };
 
